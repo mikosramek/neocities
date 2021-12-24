@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development node index.js",
-    "get-schema": "node schema/schemaQuery.js"
+    "publish": "neocities push ./build",
+    "get-schema": "node schema/schemaQuery.js",
+    "dev-static": "nodemon --config ./nodemon.static.config.json",
+    "copy-static": "node ./utils/copy-static.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +22,7 @@
     "graphql": "^16.2.0",
     "graphql-tag": "^2.12.6",
     "lodash.get": "^4.4.2",
-    "node-fetch": "^3.1.0"
+    "node-fetch": "^3.1.0",
+    "nodemon": "^2.0.15"
   }
 }

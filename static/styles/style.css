@@ -12,5 +12,29 @@ body {
     background-color: white;
     color: black;
     font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+.Landing__body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 100vw;
+    height: 100vh;
+}
+
+.Landing__header {
+    padding-top: 50px;
+    text-align: center;
+}
+.Landing__enter-link {
+    display: block;
+    text-align: center;
+    max-width: max-content;
+    margin: 0 auto;
+    padding: 15px 10px;
+    text-decoration: underline;
+    padding-bottom: 50px;
+}

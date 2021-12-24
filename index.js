@@ -18,7 +18,9 @@ const {
     flattenMetaImages
 } = require('./utils/general-utils');
 const log = require('./utils/chalk');
+
 const createHome = require('./generators/create-home');
+const createLanding = require('./generators/create-landing');
 
 
 const fetchPrismicData = async () => {
@@ -58,6 +60,9 @@ const createPagesAndInjectData = async (pages) => {
     
         log.header('Creating Home')
         createHome(home, metaInformation);
+
+        log.header('Creating Landing')
+        createLanding(landing, metaInformation);
     
         log.header('Creating pages')
         for (const [key, value] of Object.entries(entries)) {

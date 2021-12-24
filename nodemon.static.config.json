@@ -1,0 +1,7 @@
+{
+  "watch": [
+    "static"
+  ],
+  "exec": "npm run copy-static",
+  "ext": "css"
+}
