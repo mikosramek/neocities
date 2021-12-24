@@ -1,12 +1,12 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra')
 const _get = require('lodash.get');
 const { replaceAllKeys } = require('../utils/general-utils');
 const log = require('../utils/chalk')
 
 const createHome = (pageData, metaData) => {
   try {
-    const filename = path.resolve(__dirname, 'templates', 'home.html');
+    const filename = path.resolve(__dirname, '..', 'templates', 'home.html');
     const template = fs.readFileSync(filename, 'utf8');
 
     const body = _get(pageData, 'body', []);
@@ -21,13 +21,12 @@ const createHome = (pageData, metaData) => {
 
       // figure out a way to template out sections :)
 
-    const outputPath = path.resolve(__dirname, 'build', 'home');
+    const outputPath = path.resolve(__dirname, '..', 'build', 'home');
     if (!fs.existsSync(outputPath)){
       fs.mkdirSync(outputPath);
     }
     
     fs.writeFileSync(`${outputPath}/index.html`, html);
-    log.footer(`build/home/index.html created`)
   }
   catch (error) {
     console.error(error)

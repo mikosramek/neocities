@@ -4,9 +4,9 @@ const header = (text) => {
   console.log(chalk.bgBlack.whiteBright.bold(`\n  ${text}  `))
 }
 
-const footer = (text) => {
+const subtitle = (text) => {
   console.log(
-    chalk.bgGray.whiteBright.bold(`  ${text}  \n`)
+    chalk.bgGray.whiteBright.bold(`\n  ${text}  `)
   );
 }
 
@@ -21,7 +21,7 @@ const red = (text) => {
 
 module.exports = {
   header,
-  footer,
+  subtitle,
   green,
   red
 }

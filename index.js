@@ -1,5 +1,7 @@
 'use strict'
-const _get = require('lodash.get')
+const _get = require('lodash.get');
+const fs = require('fs-extra');
+const path = require('path');
 
 if (process.env.NODE_ENV === 'development') {
     require('dotenv').config();
@@ -15,7 +17,7 @@ const {
     cleanBodies,
     flattenMetaImages
 } = require('./utils/general-utils');
-const log = require('./utils/chalk')
+const log = require('./utils/chalk');
 const createHome = require('./generators/create-home');
 
 
@@ -44,19 +46,32 @@ const fetchPrismicData = async () => {
 }
 
 
-const createPagesAndInjectData = (pages) => {
-    const { home, landing, entries, metaInformation } = pages;
-
-
-    log.header('Creating Home')
-    createHome(home, metaInformation);
-
-    for (const [key, value] of Object.entries(entries)) {
-        const { slug } = value;
-        log.header(`Creating ${slug}`)
-        log.footer(`Finished ${slug}`)
+const createPagesAndInjectData = async (pages) => {
+    try {
+        const { home, landing, entries, metaInformation } = pages;
+    
+        const buildPath = path.resolve(__dirname, 'build');
+    
+        log.header('Cleaning build folder')
+        await fs.emptyDir(buildPath);
+    
+    
+        log.header('Creating Home')
+        createHome(home, metaInformation);
+    
+        log.header('Creating pages')
+        for (const [key, value] of Object.entries(entries)) {
+            const { slug } = value;
+            log.subtitle(`Creating ${slug}`)
+        }
+    
+        log.header('Copying over static files')
+        // copy static files into build
+        fs.copySync(path.resolve(__dirname, 'static'), buildPath); 
     }
-    console.info('Done creating pages.')
+    catch (error) {
+        console.error(error.message);
+    }
 }
 
 fetchPrismicData()
