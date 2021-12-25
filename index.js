@@ -3,9 +3,8 @@ const _get = require('lodash.get');
 const fs = require('fs-extra');
 const path = require('path');
 
-if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config();
-}
+require('dotenv').config();
+
 
 const { getHomeAndLanding, getEntries } = require('./prismic-client');
 const baseMeta = require('./meta.config');

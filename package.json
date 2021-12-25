@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development node index.js",
+    "build": "NODE_ENV=production node index.js",
     "publish": "neocities push ./build",
     "get-schema": "node schema/schemaQuery.js",
     "dev-static": "nodemon --config ./nodemon.static.config.json",
     "copy-static": "node ./utils/copy-static.js"
   },
-  "author": "",
+  "author": "Miko Sramek",
   "license": "ISC",
   "dependencies": {
     "apollo-cache-inmemory": "^1.6.6",

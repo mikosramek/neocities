@@ -10,26 +10,32 @@ const handleSlices = (slices) => {
       case 'HomeBodyBanner':
         return handleHomeBodyBanner(primary);
     }
-  })
+  }).join('\n');
 }
 
 const handleHomeBodyBanner = (primary) => {
   const id = _get(primary, 'entry._meta.id', null);
+  const objectPosition = _get(primary, 'object_position', '50% 50%');
   if (!id) return null;
 
   const entry = _get(EntryHolder, `entries[${id}]`, null);
   if (!entry) return null;
 
-  const slug = _get(entry, 'slug', '');
+  let slug = _get(entry, 'slug', '');
   const thumb = _get(entry, 'thumbnail.url', '');
   const alt = _get(entry, 'thumbnail.alt', '');
 
   const template = getSliceTemplate('banner');
 
+  if (process.env.NODE_ENV === 'development') {
+    slug = `build/${slug}`;
+  }
+
   const keys = {
     image_url: thumb,
     image_alt: alt,
-    slug
+    style: `object-position: ${objectPosition};`,
+    slug,
   };
 
   return replaceAllKeys(template, keys);

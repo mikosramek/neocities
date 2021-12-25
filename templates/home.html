@@ -5,19 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>%meta_page_title%</title>
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="../favicon.ico" />
     <link href="../styles/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../styles/slices.css" rel="stylesheet" type="text/css" media="all" />
 
     <!-- Share Meta -->
 %meta_tags%
 
 </head>
-<body>
-    <header>
-        <h1>%title%</h1>
-    </header>
-    <main>
-%slices%
-    </main>
+<body class="Home__body">
+    <div class="Home__backing"></div>
+    <div class="Global__wrapper">
+        <header class="Home__header-container">
+            <h1 class="Home__header-copy">%title%</h1>
+            <div class="Home__header-chains Home__header-chains--left">
+                <img src="../images/chain.gif" alt="" class="Global__chain Home__header-chain--first">
+                <img src="../images/chain.gif" alt="" class="Global__chain Home__header-chain--second">
+            </div>
+            <div class="Home__header-chains Home__header-chains--right">
+                <img src="../images/chain.gif" alt="" class="Global__chain Home__header-chain--first">
+                <img src="../images/chain.gif" alt="" class="Global__chain Home__header-chain--second">
+            </div>
+            <img src="../images/chaos_star.svg" alt="" class="Home__chaos-star Home__chaos-star--left">
+            <img src="../images/chaos_star.svg" alt="" class="Home__chaos-star Home__chaos-star--right">
+        </header>
+        <main>
+            %slices%
+        </main>
+        <footer>
+
+        </footer>
+    </div>
 </body>
 </html>

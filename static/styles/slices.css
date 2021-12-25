@@ -1,0 +1,46 @@
+.Slice__banner-container {
+  position: relative;
+  height: 200px;
+  margin-bottom: 50px;
+}
+
+.Slice__banner-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.Slice__banner-chain {
+  position: absolute;
+  bottom: 0;
+  transform: translate(0, 100%);
+}
+
+.Slice__banner-chain--left {
+  left: 20%;
+}
+
+.Slice__banner-chain--left.Slice__banner-chain--end {
+  transform: translate(-25%, 100%);
+}
+
+.Slice__banner-chain--right.Slice__banner-chain--end {
+  transform: translate(25%, 100%);
+}
+
+.Slice__banner-chain--right {
+  right: 20%;
+}
+
+.Slice__banner-chain--end {
+  display: none;
+
+}
+
+.Slice__banner-container:last-of-type .Slice__banner-chain {
+  display: none;
+}
+
+.Slice__banner-container:last-of-type .Slice__banner-chain--end {
+  display: block;
+}

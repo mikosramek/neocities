@@ -18,11 +18,14 @@ const basePages = `
                                     }
                                 }
                             }
+                            object_position
                         }
                     }
                     ... on HomeBodyDouble_banner {
                         primary {
                             left_entry
+                            first_object_position
+                            second_object_position
                             first_entry {
                                 ... on _Document {
                                     _meta {
