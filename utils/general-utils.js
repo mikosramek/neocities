@@ -69,6 +69,15 @@ const replaceAllKeys = (text, objectWithKeys) => {
     return newText;
 }
 
+const getKeys = (keys, object) => {
+    const map = {};
+    keys.forEach((key) => {
+      const value = _get(object, key, null);
+      map[key.replace(/\./g, '_')] = value;
+    })
+    return map;
+}
+
 module.exports = {
     mergeOnto,
     cleanKeys,
@@ -76,5 +85,6 @@ module.exports = {
     objectifyEdges,
     cleanBodies,
     replaceAllKeys,
-    flattenMetaImages
+    flattenMetaImages,
+    getKeys
 }

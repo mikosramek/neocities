@@ -22,8 +22,7 @@ const createHTMLPage = (pageName, html, ) => {
   fs.writeFileSync(`${outputPath}/index.html`, html);
 }
 
-
 module.exports = {
   getHTMLTemplates,
-  createHTMLPage
+  createHTMLPage,
 }
