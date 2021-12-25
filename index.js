@@ -18,6 +18,7 @@ const {
     flattenMetaImages
 } = require('./utils/general-utils');
 const log = require('./utils/chalk');
+const EntryHolder = require('./utils/entry-holder');
 
 const createHome = require('./generators/create-home');
 const createLanding = require('./generators/create-landing');
@@ -34,6 +35,8 @@ const fetchPrismicData = async () => {
     const allEntries = await getEntries();
     const entries = flattenNodes(_get(allEntries, 'allEntrys.edges'))
     const parsedEntries = objectifyEdges(cleanBodies(entries));
+
+    EntryHolder.setEntries(parsedEntries);
 
     // console.log(metaInformation)
     // console.log(JSON.stringify(parsedEntries))

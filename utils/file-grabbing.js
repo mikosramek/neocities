@@ -13,6 +13,12 @@ const getHTMLTemplates = (pageName) => {
   }
 };
 
+const getSliceTemplate = (sliceName) => {
+  const filename = path.resolve(__dirname, '..', 'templates', 'slices', `${sliceName}.html`);
+  const template = fs.readFileSync(filename, 'utf8');
+  return template;
+}
+
 const createHTMLPage = (pageName, html, ) => {
   const outputPath = path.resolve(__dirname, '..', 'build', pageName ? pageName : '');
   if (!fs.existsSync(outputPath)){
@@ -25,4 +31,5 @@ const createHTMLPage = (pageName, html, ) => {
 module.exports = {
   getHTMLTemplates,
   createHTMLPage,
+  getSliceTemplate
 }
