@@ -41,7 +41,7 @@ cleanBodies = (edges) => {
     return edges.map(({ body, ...rest}) => {
         return {
             ...rest,
-            body: cleanBody(body)
+            body: body ? cleanBody(body) : null
         }
     })
 }

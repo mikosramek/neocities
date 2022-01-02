@@ -21,7 +21,7 @@ const createPage = (slug, pageData, metaData) => {
   const { meta_image_url, meta_image_twitter_url, ...nonMeta } = keys;
   const title = metaData.meta_page_title;
 
-  const description = keys.description.reduce((total, current) => {
+  const description = keys.description ? keys.description.reduce((total, current) => {
     const { text } = current;
     if (!text) return total + '<br>';
     return total + `
@@ -29,7 +29,7 @@ const createPage = (slug, pageData, metaData) => {
         ${text}
       </p>
     `
-  }, '');
+  }, '') : '<!-- Description -->';
   
   metaData.meta_url += slug;
   metaData.meta_image_base = meta_image_url;
@@ -38,7 +38,7 @@ const createPage = (slug, pageData, metaData) => {
   metaData.meta_page_description = keys.short_description;
 
   const body = _get(pageData, 'body', []);
-  const slices = handleSlices(body);
+  const slices = body ? handleSlices(body) : '<!-- Body -->';
 
   const replacementData = {
     meta_tags: metaTemplate,

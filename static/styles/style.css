@@ -52,18 +52,49 @@ body {
     height: 100vh;
 }
 
-.Landing__header {
-    padding-top: 50px;
-    text-align: center;
+.Landing__body canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* z-index: -1; */
 }
-.Landing__enter-link {
+
+.Landing__main {
+    position: relative;
+    z-index: 2;
+}
+
+.Landing__header {
+    position: absolute;
+    z-index: 2;
+    padding-bottom: 50px;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+}
+
+.Landing__nav-container {
+
+}
+.Landing__nav-list {
+    display: flex;
+    justify-content: center;
+}
+.Landing__nav-item {
+    padding: 15px 10px;
+}
+
+.Landing__link {
     display: block;
     text-align: center;
     max-width: max-content;
     margin: 0 auto;
-    padding: 15px 10px;
+    font-size: 18px;
     text-decoration: underline;
-    padding-bottom: 50px;
 }
 
 .Home__body,

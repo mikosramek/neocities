@@ -1,6 +1,6 @@
 const basePages = `
 {
-    allHomes (id: "YcUf8RIAAC0AZTym") {
+    allHomes {
         edges {
             node {
                 title
@@ -48,12 +48,10 @@ const basePages = `
             }
         }
     }
-    allLandings (id: "YcUgIBIAAC4AZT1_") {
+    allLandings {
         edges {
             node {
                 title
-                model_name
-                enter_button_copy
                 background_image
             }
         } 

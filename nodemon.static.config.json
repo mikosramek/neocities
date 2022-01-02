@@ -3,5 +3,5 @@
     "static"
   ],
   "exec": "npm run copy-static",
-  "ext": "css"
+  "ext": "css, js, gltf"
 }

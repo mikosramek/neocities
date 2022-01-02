@@ -25,28 +25,36 @@ const createPage = require('./generators/create-page');
 
 
 const fetchPrismicData = async () => {
-    const data = await getHomeAndLanding();
-    const home = _get(data, 'allHomes.edges[0].node', {});
-    const landing = _get(data, 'allLandings.edges[0].node', {});
-    const metaInformation = flattenMetaImages(mergeOnto(baseMeta, home));
-    const cleanHome = cleanKeys(home, baseMeta);
+    try {
+        const data = await getHomeAndLanding();
+        const home = _get(data, 'allHomes.edges[0].node', {});
+        const landing = _get(data, 'allLandings.edges[0].node', {});
+        const metaInformation = flattenMetaImages(mergeOnto(baseMeta, home));
+        const cleanHome = cleanKeys(home, baseMeta);
 
-    const allEntries = await getEntries();
-    const entries = flattenNodes(_get(allEntries, 'allEntrys.edges'))
-    const parsedEntries = objectifyEdges(cleanBodies(entries));
-
-    EntryHolder.setEntries(parsedEntries);
-
-    // console.log(metaInformation)
-    // console.log(JSON.stringify(parsedEntries))
-
-    // move entries into globally accessable object
-
-    return {
-        home: cleanHome,
-        landing,
-        metaInformation,
-        entries: parsedEntries
+        console.log('1')
+    
+        const allEntries = await getEntries();
+        console.log(allEntries);
+        const entries = flattenNodes(_get(allEntries, 'allEntrys.edges'))
+        const parsedEntries = objectifyEdges(cleanBodies(entries));
+    
+        EntryHolder.setEntries(parsedEntries);
+    
+        // console.log(metaInformation)
+        // console.log(JSON.stringify(parsedEntries))
+    
+        // move entries into globally accessable object
+    
+        return {
+            home: cleanHome,
+            landing,
+            metaInformation,
+            entries: parsedEntries
+        }
+    }
+    catch (error) {
+        console.error(error.message);
     }
 }
 
@@ -63,16 +71,16 @@ const createPagesAndInjectData = async (pages) => {
         log.header(`Creating ${process.env.NODE_ENV} build`);
     
         log.header('Creating Home');
-        createHome(home, metaInformation);
+        createHome(home, { ...metaInformation });
 
         log.header('Creating Landing');
-        createLanding(landing, metaInformation);
+        createLanding(landing, { ...metaInformation });
     
         log.header('Creating pages');
         for (const [key, value] of Object.entries(entries)) {
             const { slug } = value;
             log.subtitle(`Creating ${slug}`);
-            createPage(slug, value, metaInformation);
+            createPage(slug, value, { ...metaInformation });
         }
     
         log.header('Copying over static files')

@@ -11,9 +11,7 @@ const createLanding = (pageData, metaData) => {
       meta_tags: metaTemplate,
       ...metaData,
       title: _get(pageData, 'title[0].text', ''),
-      enter_button_copy: _get(pageData, 'enter_button_copy', 'Enter'),
-      background_image: _get(pageData, 'background_image.url', ''),
-      model_name: _get(pageData, 'model_name', '')
+      background_image: _get(pageData, 'background_image.url', '')
     }
     const html = replaceAllKeys(template, replacementData);
   
