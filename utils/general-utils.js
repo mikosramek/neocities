@@ -1,6 +1,8 @@
 const _get = require('lodash.get')
 const log = require('./chalk')
 
+const IS_DEV = process.env.NODE_ENV === 'development';
+
 const mergeOnto = (base, objectToImprint) => {
     const newBase = JSON.parse(JSON.stringify(base));
     for (const [key, value] of Object.entries(objectToImprint)) {
@@ -54,16 +56,18 @@ const flattenMetaImages = (meta) => {
 }
 
 const cleanBody = (body) => {
-    return body.map(({ primary, fields }) => ({ primary, fields }));
+    return body.map(({ primary, fields, type }) => ({ primary, fields, type }));
 }
 
 const replaceAllKeys = (text, objectWithKeys) => {
     let newText = text;
     for (const [key, value] of Object.entries(objectWithKeys)) {
         const test = new RegExp(`%${key}%`, 'gi');
-        test.test(newText) ?
-            log.green(`✓ ${key}`) :
-            log.red(`✗ ${key}`)
+        if (IS_DEV) {
+            test.test(newText) ?
+                log.green(`✓ ${key}`) :
+                log.red(`✗ ${key}`)
+        }
         newText = newText.replace(test, value);
     }
     return newText;
@@ -86,5 +90,6 @@ module.exports = {
     cleanBodies,
     replaceAllKeys,
     flattenMetaImages,
-    getKeys
+    getKeys,
+    IS_DEV
 }

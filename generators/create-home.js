@@ -10,7 +10,7 @@ const createHome = (pageData, metaData) => {
 
     const body = _get(pageData, 'body', []);
 
-    const slices = handleSlices([...body, ...body, ...body]);
+    const slices = handleSlices(body);
 
     const replacementData = {
       meta_tags: metaTemplate,

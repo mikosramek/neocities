@@ -10,6 +10,7 @@ const basePages = `
                 meta_url
                 body {
                     ... on HomeBodyBanner {
+                        type
                         primary {
                             entry {
                                 ... on _Document {
@@ -22,6 +23,7 @@ const basePages = `
                         }
                     }
                     ... on HomeBodyDouble_banner {
+                        type
                         primary {
                             left_entry
                             first_object_position
@@ -76,6 +78,7 @@ const baseEntryEdges = `
             body {
                 __typename
                 ... on EntryBodyGallery {
+                    type
                     primary {
                         gallery_title
                     }

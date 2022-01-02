@@ -54,20 +54,21 @@ const fetchPrismicData = async () => {
 const createPagesAndInjectData = async (pages) => {
     try {
         const { home, landing, entries, metaInformation } = pages;
-    
+        
         const buildPath = path.resolve(__dirname, 'build');
-    
-        log.header('Cleaning build folder')
+        
+        log.header('Cleaning build folder');
         await fs.emptyDir(buildPath);
+        
+        log.header(`Creating ${process.env.NODE_ENV} build`);
     
-    
-        log.header('Creating Home')
+        log.header('Creating Home');
         createHome(home, metaInformation);
 
-        log.header('Creating Landing')
+        log.header('Creating Landing');
         createLanding(landing, metaInformation);
     
-        log.header('Creating pages')
+        log.header('Creating pages');
         for (const [key, value] of Object.entries(entries)) {
             const { slug } = value;
             log.subtitle(`Creating ${slug}`);
