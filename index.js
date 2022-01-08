@@ -6,7 +6,7 @@ const path = require('path');
 require('dotenv').config();
 
 
-const { getHomeAndLanding, getEntries } = require('./prismic-client');
+const { getBasePages, getEntries } = require('./prismic-client');
 const baseMeta = require('./meta.config');
 const {
     mergeOnto,
@@ -22,20 +22,26 @@ const EntryHolder = require('./utils/entry-holder');
 const createHome = require('./generators/create-home');
 const createLanding = require('./generators/create-landing');
 const createPage = require('./generators/create-page');
+const createGuestbook = require('./generators/create-guestbook');
 
 
 const fetchPrismicData = async () => {
     try {
-        const data = await getHomeAndLanding();
+        const data = await getBasePages();
+
         const home = _get(data, 'allHomes.edges[0].node', {});
         const landing = _get(data, 'allLandings.edges[0].node', {});
         const metaInformation = flattenMetaImages(mergeOnto(baseMeta, home));
         const cleanHome = cleanKeys(home, baseMeta);
 
-        console.log('1')
+        const blog = _get(data, 'allBlogs.edges[0].node', {});
+
+        const guestbook = _get(data, 'allGuestbooks.edges[0].node', {});
+
+        console.info(blog);
+        console.info(guestbook);
     
         const allEntries = await getEntries();
-        console.log(allEntries);
         const entries = flattenNodes(_get(allEntries, 'allEntrys.edges'))
         const parsedEntries = objectifyEdges(cleanBodies(entries));
     
@@ -47,9 +53,11 @@ const fetchPrismicData = async () => {
         // move entries into globally accessable object
     
         return {
-            home: cleanHome,
             landing,
+            blog,
+            guestbook,
             metaInformation,
+            home: cleanHome,
             entries: parsedEntries
         }
     }
@@ -61,7 +69,7 @@ const fetchPrismicData = async () => {
 
 const createPagesAndInjectData = async (pages) => {
     try {
-        const { home, landing, entries, metaInformation } = pages;
+        const { home, landing, entries, metaInformation, blog, guestbook } = pages;
         
         const buildPath = path.resolve(__dirname, 'build');
         
@@ -75,6 +83,9 @@ const createPagesAndInjectData = async (pages) => {
 
         log.header('Creating Landing');
         createLanding(landing, { ...metaInformation });
+
+        log.header('Creating Guestbook');
+        createGuestbook(guestbook, { ...metaInformation });
     
         log.header('Creating pages');
         for (const [key, value] of Object.entries(entries)) {

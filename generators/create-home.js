@@ -17,6 +17,7 @@ const createHome = (pageData, metaData) => {
       ...metaData,
       slices,
       title: _get(pageData, 'title[0].text', ''),
+      current_year: new Date().getFullYear()
     }
 
     const html = replaceAllKeys(template, replacementData);

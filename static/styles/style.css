@@ -98,7 +98,8 @@ body {
 }
 
 .Home__body,
-.Entry__body {
+.Entry__body,
+.Guestbook__body {
     min-height: 100vh;
     width: 100vw;
     position: relative;
@@ -236,4 +237,26 @@ body {
     position: absolute;
     left: -75px;
     top: -32px;
+}
+
+.Guestbook__body {
+    text-align: center;
+    color: #fff;
+}
+
+.Guestbook__heading {
+    margin: 24px 0;
+    font-size: 28px;
+}
+
+.Guestbook__copy {
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.Guestbook__iframe {
+    width: 100%;
+    height: 75vh;
+    min-height: 450px;
+    border: none;
 }
