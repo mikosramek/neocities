@@ -98,3 +98,14 @@
   height: auto;
   aspect-ratio: 512/512;
 }
+
+.Slice__blog-link-anchor {
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.Slice__blog-link-container {
+  margin: 10px 0;
+}

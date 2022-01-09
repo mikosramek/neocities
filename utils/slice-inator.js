@@ -24,6 +24,7 @@ const handleSlices = (slices) => {
 const getLinkDetails = (id, prefix = null) => {
   const entry = _get(EntryHolder, `entries[${id}]`, null);
   const slug = _get(entry, 'slug', '');
+  const name = _get(entry, 'name', '');
   const thumb = _get(entry, 'thumbnail.url', '');
   const alt = _get(entry, 'thumbnail.alt', '');
 
@@ -37,7 +38,8 @@ const getLinkDetails = (id, prefix = null) => {
   return {
     slug,
     thumb,
-    alt
+    alt,
+    name
   }
 }
 
@@ -116,4 +118,7 @@ const handleGallery = (primary, fields) => {
 }
 
 
-module.exports = handleSlices;
+module.exports = {
+  handleSlices,
+  getLinkDetails
+};

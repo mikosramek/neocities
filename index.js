@@ -14,7 +14,8 @@ const {
     flattenNodes,
     objectifyEdges,
     cleanBodies,
-    flattenMetaImages
+    flattenMetaImages,
+    tagEntries
 } = require('./utils/general-utils');
 const log = require('./utils/chalk');
 const EntryHolder = require('./utils/entry-holder');
@@ -23,6 +24,7 @@ const createHome = require('./generators/create-home');
 const createLanding = require('./generators/create-landing');
 const createPage = require('./generators/create-page');
 const createGuestbook = require('./generators/create-guestbook');
+const createBlog = require('./generators/create-blog');
 
 
 const fetchPrismicData = async () => {
@@ -37,20 +39,13 @@ const fetchPrismicData = async () => {
         const blog = _get(data, 'allBlogs.edges[0].node', {});
 
         const guestbook = _get(data, 'allGuestbooks.edges[0].node', {});
-
-        console.info(blog);
-        console.info(guestbook);
     
         const allEntries = await getEntries();
         const entries = flattenNodes(_get(allEntries, 'allEntrys.edges'))
         const parsedEntries = objectifyEdges(cleanBodies(entries));
+        const taggedEntries = tagEntries(parsedEntries);
     
         EntryHolder.setEntries(parsedEntries);
-    
-        // console.log(metaInformation)
-        // console.log(JSON.stringify(parsedEntries))
-    
-        // move entries into globally accessable object
     
         return {
             landing,
@@ -58,7 +53,8 @@ const fetchPrismicData = async () => {
             guestbook,
             metaInformation,
             home: cleanHome,
-            entries: parsedEntries
+            miniEntries: taggedEntries.mini,
+            blogEntries: taggedEntries.blog,
         }
     }
     catch (error) {
@@ -69,7 +65,7 @@ const fetchPrismicData = async () => {
 
 const createPagesAndInjectData = async (pages) => {
     try {
-        const { home, landing, entries, metaInformation, blog, guestbook } = pages;
+        const { home, landing, miniEntries, blogEntries, metaInformation, blog, guestbook } = pages;
         
         const buildPath = path.resolve(__dirname, 'build');
         
@@ -78,20 +74,32 @@ const createPagesAndInjectData = async (pages) => {
         
         log.header(`Creating ${process.env.NODE_ENV} build`);
     
+        // in these calls, we spread certain objects so that we're not changing them as we move through the pages
+        // the spread creates a "new" object
         log.header('Creating Home');
         createHome(home, { ...metaInformation });
 
         log.header('Creating Landing');
         createLanding(landing, { ...metaInformation });
 
+        log.header('Creating Blog');
+        createBlog(blog, { ...blogEntries }, { ...metaInformation });
+
         log.header('Creating Guestbook');
         createGuestbook(guestbook, { ...metaInformation });
     
-        log.header('Creating pages');
-        for (const [key, value] of Object.entries(entries)) {
+        log.header('Creating mini pages');
+        for (const value of Object.values(miniEntries)) {
             const { slug } = value;
             log.subtitle(`Creating ${slug}`);
-            createPage(slug, value, { ...metaInformation });
+            createPage(slug, value, { ...metaInformation }, 'home');
+        }
+
+        log.header('Creating blog pages');
+        for (const value of Object.values(blogEntries)) {
+            const { slug } = value;
+            log.subtitle(`Creating ${slug}`);
+            createPage(slug, value, { ...metaInformation }, 'blog');
         }
     
         log.header('Copying over static files')

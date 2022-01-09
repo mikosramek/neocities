@@ -2,7 +2,7 @@ const _get = require('lodash.get');
 
 const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
 const { replaceAllKeys } = require('../utils/general-utils');
-const handleSlices = require('../utils/slice-inator');
+const { handleSlices } = require('../utils/slice-inator');
 
 const createHome = (pageData, metaData) => {
   try {

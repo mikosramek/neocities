@@ -44,6 +44,15 @@ body {
     pointer-events: none;
 }
 
+.Global__landing-button {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    color: #fff;
+    font-size: 18px;
+    z-index: 10;
+}
+
 .Landing__body {
     background-size: cover;
     background-repeat: no-repeat;
@@ -99,7 +108,8 @@ body {
 
 .Home__body,
 .Entry__body,
-.Guestbook__body {
+.Guestbook__body,
+.Blog__body {
     min-height: 100vh;
     width: 100vw;
     position: relative;
@@ -246,7 +256,7 @@ body {
 
 .Guestbook__heading {
     margin: 24px 0;
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .Guestbook__copy {
@@ -259,4 +269,19 @@ body {
     height: 75vh;
     min-height: 450px;
     border: none;
+}
+
+.Blog__body {
+    color: #fff;
+}
+
+.Blog__header-copy {
+    font-size: 24px;
+    text-align: center;
+    margin: 24px 0;
+}
+
+.Blog__entry--pinned {
+    font-size: 20px;
+    margin-bottom: 14px;
 }

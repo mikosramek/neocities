@@ -5,6 +5,8 @@ edges {
       _meta {
           id
           uid
+          tags
+          firstPublicationDate
       }
       name
       thumbnail
@@ -22,6 +24,15 @@ edges {
               fields {
                   gallery_image
               }
+          }
+          ... on EntryBodyText_entry {
+            type
+            primary {
+              subheading
+            }
+            fields {
+              text
+            }
           }
       }
   }

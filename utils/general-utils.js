@@ -26,18 +26,34 @@ const flattenNodes = (edges) => {
 const objectifyEdges = (edges) => {
     const map = {};
     edges.forEach((node) => {
-        const id = _get(node, '_meta.id', null)
-        const slug = _get(node, '_meta.uid')
+        const id = _get(node, '_meta.id', null);
+        const slug = _get(node, '_meta.uid');
+        const tags = _get(node, '_meta.tags', '');
+        const date = _get(node, '_meta.firstPublicationDate', '');
         delete node._meta;
         map[id] = {
             ...node,
-            slug
+            tags,
+            slug,
+            date
         };
     })
     return map;
 }
 
-cleanBodies = (edges) => {
+const tagEntries = (entries) => {
+    const map = {};
+    Object.entries(entries).forEach(([key, entry]) => {
+        const { tags } = entry;
+        if (tags.length <= 0) return;
+
+        if (!map[tags[0]]) { map[tags[0]] = {} };
+        map[tags[0]][key] = entry;
+    });
+    return map;
+}
+
+const cleanBodies = (edges) => {
     return edges.map(({ body, ...rest}) => {
         return {
             ...rest,
@@ -82,6 +98,11 @@ const getKeys = (keys, object) => {
     return map;
 }
 
+const getReadableDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-ca');
+}
+
 module.exports = {
     mergeOnto,
     cleanKeys,
@@ -91,5 +112,7 @@ module.exports = {
     replaceAllKeys,
     flattenMetaImages,
     getKeys,
-    IS_DEV
+    IS_DEV,
+    tagEntries,
+    getReadableDate
 }

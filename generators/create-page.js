@@ -1,9 +1,9 @@
 const _get = require('lodash.get');
 const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
 const { replaceAllKeys, getKeys, IS_DEV } = require('../utils/general-utils');
-const handleSlices = require('../utils/slice-inator');
+const { handleSlices } = require('../utils/slice-inator');
 
-const createPage = (slug, pageData, metaData) => {
+const createPage = (slug, pageData, metaData, returnPage) => {
   const { template, metaTemplate } = getHTMLTemplates('entry');
 
   const keys = getKeys([
@@ -47,7 +47,7 @@ const createPage = (slug, pageData, metaData) => {
     title,
     description,
     gallery: slices,
-    dev_link: IS_DEV ? '/build' : ''
+    back_link: IS_DEV ? `/build/${returnPage}` : `/${returnPage}`
   }
 
   const html = replaceAllKeys(template, replacementData);
