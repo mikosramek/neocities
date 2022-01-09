@@ -53,6 +53,11 @@ body {
     z-index: 10;
 }
 
+.Global__bold {
+    color: #7A0E44;
+    font-weight: 700;
+}
+
 .Landing__body {
     background-size: cover;
     background-repeat: no-repeat;

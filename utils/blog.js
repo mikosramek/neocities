@@ -12,7 +12,7 @@ const handleEntries = (entries, showDate = false) => {
         console.log(entry);
         let { name, slug, date } = entry;
         if (IS_DEV) {
-          slug = `/build/${slug}`;
+          slug = `build/${slug}`;
         }
         return replaceAllKeys(
           template,

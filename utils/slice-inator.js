@@ -14,6 +14,8 @@ const handleSlices = (slices) => {
         return handleHomeDoubleBanner(primary);
       case 'gallery':
         return handleGallery(primary, fields);
+      case 'text_entry':
+        return handleTextEntry(primary, fields);
       default:
         log.red(`${type} slice not handled`);
         break;
@@ -115,6 +117,39 @@ const handleGallery = (primary, fields) => {
       images: imageHtml,
     }
   );
+}
+
+const handleTextEntry = (primary, fields) => {
+  const entryTemplate = getSliceTemplate('text-entry');
+  const paragraphTemplate = getSliceTemplate('paragraph');
+
+  const subheading = _get(primary, 'subheading', '');
+  const text = fields.map((field) => {
+    const paragraph = _get(field, 'text', {});
+    const copy = paragraph.map(({ text }) => {
+      return replaceAllKeys(paragraphTemplate, { copy: injectStyleTags(text) });
+    }).join('\n');
+    return copy;
+  }).join('\n');
+
+  return replaceAllKeys(entryTemplate,
+    {
+      subheading,
+      text
+    })
+}
+
+const injectStyleTags = (text) => {
+  const tags = {
+    '&b' : '<span class="Global__bold">',
+    'b&' : '</span>'
+  }
+
+  const newText = Object.entries(tags).reduce((total, [key, value]) => {
+    return total.replace(new RegExp(key, 'gi'), value);
+  }, text);
+
+  return newText;
 }
 
 

@@ -109,3 +109,27 @@
 .Slice__blog-link-container {
   margin: 10px 0;
 }
+
+.Slice__text-container {
+  background: grey;
+  margin-bottom: 24px;
+  padding: 24px 10px;
+  border: 3px solid silver;
+  border-radius: 5px;
+}
+
+.Slice__text-subheading {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.Slice__paragraph {
+  margin: 10px auto;
+  font-size: 18px;
+  width: 90%;
+}
+
+.Slice__paragraph::first-letter {
+  margin-left: 24px;
+}
