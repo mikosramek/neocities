@@ -21,10 +21,6 @@ const handleBadges = (badges) => {
 const createLanding = (pageData, metaData) => {
   try {
     const { template, metaTemplate } = getHTMLTemplates('about');
-
-    // metaData.meta_image_base = meta_image_url;
-    
-    console.log(pageData);
     
     const image = _get(pageData, 'miko_image', {});
     const twitterImage = _get(image, 'Twitter.url', '');

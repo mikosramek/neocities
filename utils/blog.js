@@ -9,7 +9,6 @@ const handleEntries = (entries, showDate = false) => {
     wrapperTemplate,
     {
       entries: Object.values(entries).map((entry) => {
-        console.log(entry);
         let { name, slug, date } = entry;
         if (IS_DEV) {
           slug = `build/${slug}`;

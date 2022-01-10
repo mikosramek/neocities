@@ -85,7 +85,7 @@ const replaceAllKeys = (text, objectWithKeys) => {
                 log.green(`✓ ${key}`) :
                 log.red(`✗ ${key}`)
         }
-        newText = newText.replace(test, value);
+        newText = newText.replace(test, value ? value : '');
     }
     return newText;
 }
