@@ -1,7 +1,7 @@
 const _get = require('lodash.get');
 
 const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
-const { replaceAllKeys } = require('../utils/general-utils');
+const { replaceAllKeys, addCredit } = require('../utils/general-utils');
 const { handleSlices } = require('../utils/slice-inator');
 
 const createHome = (pageData, metaData) => {
@@ -16,11 +16,10 @@ const createHome = (pageData, metaData) => {
       meta_tags: metaTemplate,
       ...metaData,
       slices,
-      title: _get(pageData, 'title[0].text', ''),
-      current_year: new Date().getFullYear()
+      title: _get(pageData, 'title[0].text', '')
     }
 
-    const html = replaceAllKeys(template, replacementData);
+    const html = addCredit(replaceAllKeys(template, replacementData));
 
     createHTMLPage('home', html);
   }

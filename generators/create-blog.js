@@ -1,7 +1,7 @@
 const _get = require('lodash.get');
 
 const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
-const { replaceAllKeys } = require('../utils/general-utils');
+const { replaceAllKeys, addCredit } = require('../utils/general-utils');
 const { handleEntries } = require('../utils/blog');
 const { getLinkDetails } = require('../utils/slice-inator');
 
@@ -27,7 +27,7 @@ const createBlog = (pageData, blogEntries, metaData) => {
       entries
     }
 
-    const html = replaceAllKeys(template, replacementData);
+    const html = addCredit(replaceAllKeys(template, replacementData));
 
     createHTMLPage('blog', html);
   }

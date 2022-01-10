@@ -1,6 +1,6 @@
 const _get = require('lodash.get');
 const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
-const { replaceAllKeys, getKeys, IS_DEV } = require('../utils/general-utils');
+const { replaceAllKeys, getKeys, IS_DEV, addCredit } = require('../utils/general-utils');
 const { handleSlices } = require('../utils/slice-inator');
 
 const createPage = (slug, pageData, metaData, returnPage) => {
@@ -50,7 +50,7 @@ const createPage = (slug, pageData, metaData, returnPage) => {
     back_link: IS_DEV ? `/build/${returnPage}` : `/${returnPage}`
   }
 
-  const html = replaceAllKeys(template, replacementData);
+  const html = addCredit(replaceAllKeys(template, replacementData));
 
   createHTMLPage(slug, html);
 

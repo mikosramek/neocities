@@ -1,5 +1,6 @@
-const _get = require('lodash.get')
-const log = require('./chalk')
+const _get = require('lodash.get');
+const log = require('./chalk');
+const { getHTMLTemplates } = require('../utils/file-grabbing');
 
 const IS_DEV = process.env.NODE_ENV === 'development';
 
@@ -103,6 +104,21 @@ const getReadableDate = (dateString) => {
     return date.toLocaleDateString('en-ca');
 }
 
+const addCredit = (html) => {
+    const { template } = getHTMLTemplates('credit');
+    return replaceAllKeys(
+        html,
+        {
+            credit: replaceAllKeys(
+                template,
+                {
+                    current_year : new Date().getFullYear()
+                }
+            )
+        }
+    )
+}
+
 module.exports = {
     mergeOnto,
     cleanKeys,
@@ -114,5 +130,6 @@ module.exports = {
     getKeys,
     IS_DEV,
     tagEntries,
-    getReadableDate
+    getReadableDate,
+    addCredit
 }

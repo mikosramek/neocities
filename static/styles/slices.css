@@ -4,6 +4,10 @@
   margin-bottom: 50px;
 }
 
+.Slice__container--gallery-wrapper {
+  height: auto;
+}
+
 .Slice__banner-image {
   object-fit: cover;
   width: 100%;
@@ -83,6 +87,7 @@
   flex-wrap: wrap;
 }
 
+
 .Slice__gallery-list-item {
   width: calc((100% - 24px) / 2);
   margin-right: 24px;
@@ -132,4 +137,13 @@
 
 .Slice__paragraph::first-letter {
   margin-left: 24px;
+}
+
+/* Mobile Breakpoint */
+
+@media only screen and (max-width: 600px) {
+  .Slice__paragraph {
+      width: 90%;
+      font-size: 16px;
+  }
 }

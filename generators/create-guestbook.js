@@ -1,7 +1,7 @@
 const _get = require('lodash.get');
 
 const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
-const { replaceAllKeys } = require('../utils/general-utils');
+const { replaceAllKeys, addCredit } = require('../utils/general-utils');
 
 
 const createGuestbook = (pageData, metaData) => {
@@ -15,7 +15,7 @@ const createGuestbook = (pageData, metaData) => {
     embed: _get(pageData, 'embed', ''),
   }
 
-  const html = replaceAllKeys(template, replacementData);
+  const html = addCredit(replaceAllKeys(template, replacementData));
 
   createHTMLPage('guest-book', html);
 }

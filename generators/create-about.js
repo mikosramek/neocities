@@ -1,8 +1,8 @@
 
 const _get = require('lodash.get');
 const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
-const { replaceAllKeys } = require('../utils/general-utils');
-const { handleRichText,redactText } = require('../utils/slice-inator');
+const { replaceAllKeys, addCredit } = require('../utils/general-utils');
+const { handleRichText, redactText } = require('../utils/slice-inator');
 
 const handleQuotes = (quotes) => {
   return quotes.map(({ quote }) => {
@@ -53,7 +53,7 @@ const createLanding = (pageData, metaData) => {
       quotes,
       badges
     }
-    const html = replaceAllKeys(template, replacementData);
+    const html = addCredit(replaceAllKeys(template, replacementData));
   
     createHTMLPage('about', html);
   } catch (error) {
