@@ -119,18 +119,44 @@ const handleGallery = (primary, fields) => {
   );
 }
 
-const handleTextEntry = (primary, fields) => {
-  const entryTemplate = getSliceTemplate('text-entry');
+const handleRichText = (fields) => {
   const paragraphTemplate = getSliceTemplate('paragraph');
 
-  const subheading = _get(primary, 'subheading', '');
-  const text = fields.map((field) => {
+  return fields.map((field) => {
     const paragraph = _get(field, 'text', {});
-    const copy = paragraph.map(({ text }) => {
-      return replaceAllKeys(paragraphTemplate, { copy: injectStyleTags(text) });
-    }).join('\n');
-    return copy;
+    if (Array.isArray(paragraph)) {
+      return paragraph.map(({ text }) => {
+        return replaceAllKeys(paragraphTemplate, { copy: injectStyleTags(text) });
+      }).join('\n');
+    } else {
+      return replaceAllKeys(paragraphTemplate, { copy: injectStyleTags(paragraph) });
+    }
   }).join('\n');
+}
+
+const redactText = (text, replacementCharacter = '_') => {
+  const regexStart = /[^_]_[^_ ,]/g;
+  const regexEnd = /[^_ ]_[^_]/g;
+  const starts = [...text.matchAll(regexStart)];
+  const ends = [...text.matchAll(regexEnd)];
+  const stringsToReplace = [];
+
+  for (let i = 0; i < starts.length; i++) {
+    const startIndex = starts[i].index;
+    const endIndex = ends[i].index;
+
+    stringsToReplace.push(text.slice(startIndex + 1, endIndex + 2));
+    const stringToReplace = text.slice(startIndex + 1, endIndex + 2);
+    text = text.replace(stringToReplace, replacementCharacter.repeat(stringToReplace.length));
+  }
+  return text;
+}
+
+const handleTextEntry = (primary, fields) => {
+  const entryTemplate = getSliceTemplate('text-entry');
+  
+  const subheading = _get(primary, 'subheading', '');
+  const text = handleRichText(fields);
 
   return replaceAllKeys(entryTemplate,
     {
@@ -141,8 +167,8 @@ const handleTextEntry = (primary, fields) => {
 
 const injectStyleTags = (text) => {
   const tags = {
-    '&b' : '<span class="Global__bold">',
-    'b&' : '</span>'
+    '&b ' : '<span class="Global__bold">',
+    ' e&' : '</span>' // end span
   }
 
   const newText = Object.entries(tags).reduce((total, [key, value]) => {
@@ -155,5 +181,7 @@ const injectStyleTags = (text) => {
 
 module.exports = {
   handleSlices,
-  getLinkDetails
+  getLinkDetails,
+  handleRichText,
+  redactText
 };

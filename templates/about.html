@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico" />
+    <title>%title% | %meta_page_title%</title>
+
+    <link href="../styles/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../styles/slices.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- Share Meta -->
+%meta_tags%
+</head>
+<body class="About__body">
+    <div class="Global__backing"></div>
+    <div class="Global__wrapper">
+        <header class="About__header-container">
+          <img src="%img_src%" alt="%img_alt%" class="About__header-image">
+          <h1 class="About__header-copy">%title%</h1>
+          <nav class="Global__landing-button">
+            <a href="/" aria-label="Navigates to the home page">⌂</a>
+          </nav>
+        </header>
+        <main>
+          <section class="About__bio">
+            %bio%
+          </section>
+          <section>
+            <h2 class="About__subheading">My favourite Quotes</h2>
+            %quotes%
+          </section>
+          <section>
+            <h2 class="About__subheading">Badges</h2>
+            <div class="About__badges-container">
+              %badges%
+            </div>
+          </section>
+        </main>
+    </div>
+</body>
+</html>

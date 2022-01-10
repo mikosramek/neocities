@@ -2,6 +2,7 @@ const home = require('./fragments/home');
 const landing = require('./fragments/landing');
 const guestbook = require('./fragments/guestbook');
 const blog = require('./fragments/blog');
+const about = require('./fragments/about');
 const baseEntries = require('./fragments/baseEntries');
 
 const basePages = `
@@ -10,6 +11,7 @@ const basePages = `
     ${landing}
     ${guestbook}
     ${blog}
+    ${about}
 }
 `
 

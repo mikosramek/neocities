@@ -25,6 +25,7 @@ const createLanding = require('./generators/create-landing');
 const createPage = require('./generators/create-page');
 const createGuestbook = require('./generators/create-guestbook');
 const createBlog = require('./generators/create-blog');
+const createAbout = require('./generators/create-about');
 
 
 const fetchPrismicData = async () => {
@@ -39,6 +40,7 @@ const fetchPrismicData = async () => {
         const blog = _get(data, 'allBlogs.edges[0].node', {});
 
         const guestbook = _get(data, 'allGuestbooks.edges[0].node', {});
+        const about = _get(data, 'allAbouts.edges[0].node', {});
     
         const allEntries = await getEntries();
         const entries = flattenNodes(_get(allEntries, 'allEntrys.edges'))
@@ -51,6 +53,7 @@ const fetchPrismicData = async () => {
             landing,
             blog,
             guestbook,
+            about,
             metaInformation,
             home: cleanHome,
             miniEntries: taggedEntries.mini,
@@ -65,7 +68,7 @@ const fetchPrismicData = async () => {
 
 const createPagesAndInjectData = async (pages) => {
     try {
-        const { home, landing, miniEntries, blogEntries, metaInformation, blog, guestbook } = pages;
+        const { home, landing, miniEntries, blogEntries, metaInformation, blog, guestbook, about } = pages;
         
         const buildPath = path.resolve(__dirname, 'build');
         
@@ -87,6 +90,9 @@ const createPagesAndInjectData = async (pages) => {
 
         log.header('Creating Guestbook');
         createGuestbook(guestbook, { ...metaInformation });
+
+        log.header('Creating About');
+        createAbout(about, { ...metaInformation });
     
         log.header('Creating mini pages');
         for (const value of Object.values(miniEntries)) {

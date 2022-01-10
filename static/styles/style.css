@@ -114,7 +114,8 @@ body {
 .Home__body,
 .Entry__body,
 .Guestbook__body,
-.Blog__body {
+.Blog__body,
+.About__body {
     min-height: 100vh;
     width: 100vw;
     position: relative;
@@ -289,4 +290,82 @@ body {
 .Blog__entry--pinned {
     font-size: 20px;
     margin-bottom: 14px;
+}
+
+.About__body {
+    color: #fff;
+}
+
+.About__header-container {
+    margin: 24px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.About__header-copy {
+    font-size: 24px;
+}
+
+.About__header-image {
+    width: 256px;
+    margin-bottom: 24px;
+}
+
+.About__subheading {
+    text-align: center;
+    font-size: 20px;
+}
+
+.About__quote {
+    font-size: 18px;
+    text-align: center;
+    margin: 24px auto;
+    position: relative;
+    width: max-content;
+    background-color: white;
+    padding: 10px 25px;
+    border-radius: 5px;
+    color: #000;
+}
+
+.About__quote::after,
+.About__quote::before {
+    font-size: 30px;
+    position: absolute;
+    color: white;
+}
+
+.About__quote::before {
+    content: '❝';
+    left: -30px;
+    top: -10px;
+}
+
+.About__quote::after {
+    content: '❞';
+    right: -30px;
+    bottom: -10px;
+}
+
+.About__bio {
+    color: #f4bfdb;
+    font-family: monospace;
+    margin: 48px auto;
+    width: 80%;
+}
+
+.About__badges-container {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.About__badge-link {
+}
+
+.About__badge-image {
+    width: auto;
 }
