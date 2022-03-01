@@ -9,7 +9,8 @@
     "publish": "neocities push ./build",
     "get-schema": "node schema/schemaQuery.js",
     "dev-static": "nodemon --config ./nodemon.static.config.json",
-    "copy-static": "node ./utils/copy-static.js"
+    "copy-static": "node ./utils/copy-static.js",
+    "dev-date-helper": "nodemon ./utils/date-helper.js"
   },
   "author": "Miko Sramek",
   "license": "ISC",

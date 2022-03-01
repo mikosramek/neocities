@@ -45,6 +45,14 @@ const getLinkDetails = (id, prefix = null) => {
   }
 }
 
+getMetaDetails = (id) => {
+  const entry = _get(EntryHolder, `entries[${id}]`, null);
+  return {
+    lastPublicationDate: _get(entry, 'lastPublicationDate', ''),
+    date: _get(entry, 'date', '')
+  }
+}
+
 const handleHomeBodyBanner = (primary) => {
   const id = _get(primary, 'entry._meta.id', null);
   const objectPosition = _get(primary, 'object_position', '50% 50%');
@@ -183,5 +191,6 @@ module.exports = {
   handleSlices,
   getLinkDetails,
   handleRichText,
-  redactText
+  redactText,
+  getMetaDetails
 };

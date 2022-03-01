@@ -1,6 +1,6 @@
-import * as THREE from "https://threejs.org/build/three.module.js";
-import { OrbitControls } from "https://threejs.org/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "https://threejs.org/examples/jsm/loaders/GLTFLoader.js";
+import * as THREE from 'https://cdn.skypack.dev/three@0.128.0/build/three.module.js';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 
 const textureLoader = new THREE.TextureLoader();
 

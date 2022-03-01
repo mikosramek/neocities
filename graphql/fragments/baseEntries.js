@@ -6,6 +6,7 @@ edges {
           id
           uid
           tags
+          lastPublicationDate
           firstPublicationDate
       }
       name

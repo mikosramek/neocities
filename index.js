@@ -43,8 +43,11 @@ const fetchPrismicData = async () => {
         const about = _get(data, 'allAbouts.edges[0].node', {});
     
         const allEntries = await getEntries();
-        const entries = flattenNodes(_get(allEntries, 'allEntrys.edges'))
+        // remove node key from object
+        const entries = flattenNodes(_get(allEntries, 'allEntrys.edges'));
+        // get rid of unneeded _meta info
         const parsedEntries = objectifyEdges(cleanBodies(entries));
+        // separate each entry into tagged objects
         const taggedEntries = tagEntries(parsedEntries);
     
         EntryHolder.setEntries(parsedEntries);

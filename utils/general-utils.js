@@ -31,12 +31,14 @@ const objectifyEdges = (edges) => {
         const slug = _get(node, '_meta.uid');
         const tags = _get(node, '_meta.tags', '');
         const date = _get(node, '_meta.firstPublicationDate', '');
+        const lastPublicationDate = _get(node, '_meta.lastPublicationDate', '');
         delete node._meta;
         map[id] = {
             ...node,
             tags,
             slug,
-            date
+            date,
+            lastPublicationDate
         };
     })
     return map;

@@ -8,6 +8,8 @@ allBlogs {
           name
           _meta {
             id
+            firstPublicationDate
+            lastPublicationDate
           }
         }
       }

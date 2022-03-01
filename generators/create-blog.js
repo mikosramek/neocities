@@ -3,7 +3,7 @@ const _get = require('lodash.get');
 const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
 const { replaceAllKeys, addCredit } = require('../utils/general-utils');
 const { handleEntries } = require('../utils/blog');
-const { getLinkDetails } = require('../utils/slice-inator');
+const { getLinkDetails, getMetaDetails } = require('../utils/slice-inator');
 
 const createBlog = (pageData, blogEntries, metaData) => {
   try {
@@ -11,10 +11,12 @@ const createBlog = (pageData, blogEntries, metaData) => {
 
     const pinnedId = _get(pageData, 'pinned_entry._meta.id', '');
     const pinnedEntry = getLinkDetails(pinnedId);
+    const pinnedEntryMeta = getMetaDetails(pinnedId);
+    
     // remove pinned entry from main entries object
     delete blogEntries[pinnedId];
 
-    const pinned_entry = handleEntries([pinnedEntry]); //.replace(/<\/?li/gi, '<div');
+    const pinned_entry = handleEntries([{ ...pinnedEntry, ...pinnedEntryMeta }]); //.replace(/<\/?li/gi, '<div');
     const entries = Object.keys(blogEntries).length > 0 ?
       handleEntries(blogEntries, true) :
       '<!-- Entries -->';
