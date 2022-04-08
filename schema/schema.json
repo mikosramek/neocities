@@ -1,0 +1,303 @@
+{
+  "data": {
+    "__schema": {
+      "types": [
+        {
+          "kind": "SCALAR",
+          "name": "DateTime",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Entry",
+          "possibleTypes": null
+        },
+        {
+          "kind": "UNION",
+          "name": "EntryBody",
+          "possibleTypes": [
+            {
+              "name": "EntryBodyGallery"
+            }
+          ]
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyGallery",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyGalleryFields",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyGalleryPrimary",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryConnectionConnection",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryConnectionEdge",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Home",
+          "possibleTypes": null
+        },
+        {
+          "kind": "UNION",
+          "name": "HomeBody",
+          "possibleTypes": [
+            {
+              "name": "HomeBodyBanner"
+            },
+            {
+              "name": "HomeBodyDouble_banner"
+            }
+          ]
+        },
+        {
+          "kind": "OBJECT",
+          "name": "HomeBodyBanner",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "HomeBodyBannerPrimary",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "HomeBodyDouble_banner",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "HomeBodyDouble_bannerPrimary",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "HomeConnectionConnection",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "HomeConnectionEdge",
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Json",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Landing",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "LandingConnectionConnection",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "LandingConnectionEdge",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Meta",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PageInfo",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Query",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RelatedDocument",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "SortDocumentsBy",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "SortEntryy",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "SortHomey",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "SortLandingy",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereEntry",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereHome",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereLanding",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "_Document",
+          "possibleTypes": [
+            {
+              "name": "Entry"
+            },
+            {
+              "name": "Home"
+            },
+            {
+              "name": "Landing"
+            }
+          ]
+        },
+        {
+          "kind": "OBJECT",
+          "name": "_DocumentConnection",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "_DocumentEdge",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "_ExternalLink",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "_FileLink",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "_ImageLink",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "_Linkable",
+          "possibleTypes": [
+            {
+              "name": "Entry"
+            },
+            {
+              "name": "Home"
+            },
+            {
+              "name": "Landing"
+            },
+            {
+              "name": "_ExternalLink"
+            },
+            {
+              "name": "_FileLink"
+            },
+            {
+              "name": "_ImageLink"
+            }
+          ]
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "similar",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Directive",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "__DirectiveLocation",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__EnumValue",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Field",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__InputValue",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Schema",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "__Type",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "__TypeKind",
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Boolean",
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Int",
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Long",
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "String",
+          "possibleTypes": null
+        }
+      ]
+    }
+  }
+}
