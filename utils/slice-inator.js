@@ -16,7 +16,10 @@ const handleSlices = (slices) => {
         return handleGallery(primary, fields);
       case 'text_entry':
         return handleTextEntry(primary, fields);
+      case 'wideimage':
+        return handleWideImage(fields);
       default:
+        console.log(slice);
         log.red(`${type} slice not handled`);
         break;
     }
@@ -104,6 +107,23 @@ const handleHomeDoubleBanner = (primary) => {
   };
 
   return replaceAllKeys(template, keys);
+}
+
+const handleWideImage = (fields) => {
+  const imageTemplate = getSliceTemplate('wide-image');
+  const imageHtml = fields.map((field) => {
+    return replaceAllKeys(imageTemplate, {
+      image_url: _get(field, 'image.url', ''),
+      image_alt: _get(field, 'iamge.alt', '')
+    });
+  }).join('\n');
+
+  const galleryWrapperTemplate = getSliceTemplate('wide-image-wrapper');
+
+  return replaceAllKeys(galleryWrapperTemplate, {
+    title: '<!-- title -->',
+    images: imageHtml
+  });
 }
 
 const handleGallery = (primary, fields) => {

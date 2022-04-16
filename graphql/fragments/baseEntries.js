@@ -26,6 +26,12 @@ edges {
                   gallery_image
               }
           }
+          ... on EntryBodyWideimage {
+            type
+            fields {
+              image
+            }
+          }
           ... on EntryBodyText_entry {
             type
             primary {

@@ -8,6 +8,11 @@
   height: auto;
 }
 
+.Slice__container--wide-image-wrapper {
+  height: auto;
+  margin-bottom: 0;
+}
+
 .Slice__banner-image {
   object-fit: cover;
   width: 100%;
@@ -102,6 +107,20 @@
   width: 100%;
   height: auto;
   aspect-ratio: 512/512;
+}
+
+.Slice__wide-image-list-container {
+  /*  */
+}
+
+.Slice__wide-image-item {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.Slice__wide-image-img {
+  width: 100%;
+  height: auto;
 }
 
 .Slice__blog-link-container {

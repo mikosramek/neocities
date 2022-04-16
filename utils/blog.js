@@ -16,7 +16,6 @@ const handleEntries = (entries, showDate = false) => {
         }
         const daysSinceLastPub = getDaysSince(lastPublicationDate);
         const daysSinceFirstPub = getDaysSince(date);
-        console.log({ daysSinceFirstPub, daysSinceLastPub });
         return replaceAllKeys(
           template,
           {
