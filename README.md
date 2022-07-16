@@ -3,13 +3,22 @@
 A neocities website to show off my images
 
 
-## Goals
-- Use neocities to make a throwback feeling site
-- Try to use Prismic, maybe using a static generation type setup
-    - Do this on my own, where I can create a template in html, run node, and generate sites based on simple Prismic data :)
+## Requirements
+- [`make`](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows)
+- ruby + [neocities gem](https://github.com/neocities/neocities-ruby)
+- [Prismic account/repo](https://prismic.io)
+- [neocities account](https://neocities.org/)
 
+## Setup
+- Get your prismic repo name + access token
+- Follow steps in `schema/schemaQuery`
+- Fill out `.env`
+- Update makefile sitename variable to neocities site
+- Login via neocities gem
+    - `neocities help`
+    - running any command should prompt for a login
+- run `make publish`
 
-## Things to define
-- Template language
-- Tool that can pull in template + replace words
-- Tool that can pull in data from Prismic
+## Caveats
+- slices / setup + graphql is based on my prismic slices, which means graphql + node paths are unique to my repo
+- pagination of graphql pages hasn't been tested / verified, as my repo doesn't have enough pages to require it
