@@ -3,7 +3,7 @@ const { getHTMLTemplates, createHTMLPage } = require('../utils/file-grabbing');
 const { replaceAllKeys, getKeys, IS_DEV, addCredit } = require('../utils/general-utils');
 const { handleSlices } = require('../utils/slice-inator');
 
-const createPage = (slug, pageData, metaData, returnPage) => {
+const createPage = (slug, pageData, returnPage, metaData) => {
   const { template, metaTemplate } = getHTMLTemplates('entry');
 
   const keys = getKeys([

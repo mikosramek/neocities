@@ -68,6 +68,11 @@ const fetchPrismicData = async () => {
     }
 }
 
+const injectMeta = (meta) => {
+    return (handler, ...data) => {
+        handler(...data, {...meta});
+    }
+}
 
 const createPagesAndInjectData = async (pages) => {
     try {
@@ -79,36 +84,38 @@ const createPagesAndInjectData = async (pages) => {
         await fs.emptyDir(buildPath);
         
         log.header(`Creating ${process.env.NODE_ENV} build`);
+
+        const pageHandler = injectMeta(metaInformation);
     
         // in these calls, we spread certain objects so that we're not changing them as we move through the pages
         // the spread creates a "new" object
         log.header('Creating Home');
-        createHome(home, { ...metaInformation });
+        pageHandler(createHome, home);
 
         log.header('Creating Landing');
-        createLanding(landing, { ...metaInformation });
+        pageHandler(createLanding, landing);
 
         log.header('Creating Blog');
-        createBlog(blog, { ...blogEntries }, { ...metaInformation });
+        pageHandler(createBlog, blog, { ...blogEntries });
 
         log.header('Creating Guestbook');
-        createGuestbook(guestbook, { ...metaInformation });
+        pageHandler(createGuestbook, guestbook);
 
         log.header('Creating About');
-        createAbout(about, { ...metaInformation });
+        pageHandler(createAbout, about);
     
         log.header('Creating mini pages');
         for (const value of Object.values(miniEntries)) {
             const { slug } = value;
             log.subtitle(`Creating ${slug}`);
-            createPage(slug, value, { ...metaInformation }, 'home');
+            pageHandler(createPage, slug, value, 'home')
         }
 
         log.header('Creating blog pages');
         for (const value of Object.values(blogEntries)) {
             const { slug } = value;
             log.subtitle(`Creating ${slug}`);
-            createPage(slug, value, { ...metaInformation }, 'blog');
+            pageHandler(createPage, slug, value, 'blog')
         }
     
         log.header('Copying over static files')
