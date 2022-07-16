@@ -1,6 +1,5 @@
-// import fetch from 'node-fetch';
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
 
 const schema = require('./schema.json')
 
@@ -8,7 +7,7 @@ const schema = require('./schema.json')
 // run this query
 // past this into schema.json
 // then run `npm run get-schema`
-const url = 'https://allmanorofduns.prismic.io/graphql';
+const url = `https://<prismic repo-name>.prismic.io/graphql`;
 const query = `
   {
     __schema {

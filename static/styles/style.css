@@ -49,8 +49,12 @@ body {
     top: 5px;
     left: 5px;
     color: #fff;
-    font-size: 18px;
+    font-size: 28px;
     z-index: 10;
+}
+
+.Global__landing-button a {
+    padding: 10px 25px;
 }
 
 .Global__bold {
