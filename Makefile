@@ -1,3 +1,4 @@
+sitename = allmanorofduns
 
 publish:
 	@echo "Building..."
@@ -7,6 +8,6 @@ publish:
 	npm run publish
 	@echo "Done!"
 	@echo "-----------------------"
-	@echo "allmanorofduns.neocities.org"
-	neocities info allmanorofduns
+	@echo "$(sitename).neocities.org"
+	neocities info $(sitename)
 	
