@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { exec } = require("child_process");
+const publish = require('../site-publisher');
 
 require('dotenv').config();
 
@@ -18,9 +19,10 @@ app.post('/publish', async (req, res) => {
     console.log('publish webhook hit')
     try {
         const { secret } = req.body;
-        if (secret === process.env.PRISMIC_WEBHOOK_SECRET) {
+        if (secret === process.env.PRISMIC_WEBHOOK_SECRET) {      
+            await publish();
             res.sendStatus(201);
-            exec('make publish', (err, stdout, stderr) => {
+            exec('npm run publish', (err, stdout, stderr) => {
                 if (err) {
                     console.err(err);
                     // res.send(err);
@@ -29,10 +31,12 @@ app.post('/publish', async (req, res) => {
                     // res.sendStatus(500);
                 } else {
                     console.log(stdout);
+                    console.log('Finished')
                     // res.sendStatus(201);
                 }
             })
         } else {
+            console.log(secret, "!=", process.env.PRISMIC_WEBHOOK_SECRET)
             res.sendStatus(401);
         }
     } catch (e) {
