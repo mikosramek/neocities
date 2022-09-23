@@ -19,16 +19,17 @@ app.post('/publish', async (req, res) => {
     try {
         const { secret } = req.body;
         if (secret === process.env.PRISMIC_WEBHOOK_SECRET) {
+            res.sendStatus(201);
             exec('make publish', (err, stdout, stderr) => {
                 if (err) {
                     console.err(err);
-                    res.send(err);
+                    // res.send(err);
                 } else if (stderr) {
                     console.log(stderr);
-                    res.sendStatus(500);
+                    // res.sendStatus(500);
                 } else {
                     console.log(stdout);
-                    res.sendStatus(201);
+                    // res.sendStatus(201);
                 }
             })
         } else {
