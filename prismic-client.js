@@ -17,6 +17,7 @@ const client = new ApolloClient({
 });
 
 const getBasePages = () => {
+    console.log(env.process)
     return new Promise((resolve, reject) => {
         client.query({
             query: gql`${queries.basePages}`
