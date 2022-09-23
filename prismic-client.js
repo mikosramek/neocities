@@ -17,7 +17,9 @@ const client = new ApolloClient({
 });
 
 const getBasePages = () => {
-    console.log(env.process)
+    console.log(process.env)
+    console.log(process.env.PRISMIC_ACCESS_TOKEN)
+    console.log(process.env.PRISMIC_REPO_NAME)
     return new Promise((resolve, reject) => {
         client.query({
             query: gql`${queries.basePages}`
