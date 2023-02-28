@@ -114,7 +114,7 @@ const handleWideImage = (fields) => {
   const imageHtml = fields.map((field) => {
     return replaceAllKeys(imageTemplate, {
       image_url: _get(field, 'image.url', ''),
-      image_alt: _get(field, 'iamge.alt', '')
+      image_alt: _get(field, 'image.alt', '')
     });
   }).join('\n');
 
