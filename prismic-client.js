@@ -2,6 +2,7 @@ const { InMemoryCache, IntrospectionFragmentMatcher } = require("apollo-cache-in
 const ApolloClient = require("apollo-client").ApolloClient;
 const gql = require("graphql-tag");
 const PrismicLink = require("apollo-link-prismic").PrismicLink;
+const _get = require('lodash.get');
 
 const queries = require('./graphql/queries');
 const introspectionQueryResultData = require('./schema/fragmentTypes.json');
@@ -26,16 +27,35 @@ const getBasePages = () => {
     })
 }
 
-const getEntries = () => {
+// need to keep going while pageInfo.hasNextPage is true
+// then fold in 
+
+const entryQuery = (query = queries.firstEntries, edges = []) => {
     return new Promise((resolve, reject) => {
         client.query({
-            query: gql`${queries.firstEntries}`
+            query: gql`${query}`
         }).then((response) => {
-            // if data.allEntrys.pageInfo.hasNextPage is true,
-            // grab edges.cursor? of last object
-            // and recall query :) merging edge nodes
-            resolve(response.data)
+            const newEdges = _get(response, 'data.allEntrys.edges', []);
+            edges.push(...newEdges);
+            hasNextPage = _get(response, 'data.allEntrys.pageInfo.hasNextPage', false);
+            const lastEntryCursor = _get(newEdges[newEdges.length - 1], 'cursor');
+            if (hasNextPage) {
+                resolve(entryQuery(queries.entries(lastEntryCursor), edges));
+            } else {
+                resolve(edges);
+            }
         }).catch(reject);
+    })
+}
+
+const getEntries = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const edges = await entryQuery();
+            resolve(edges);
+        } catch (e) {
+            reject(e);
+        }
     })
 }
 

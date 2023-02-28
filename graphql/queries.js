@@ -27,9 +27,9 @@ const firstEntries = `
 }
 `
 
-const entries = `
+const entries = (lastId) => `
 {
-    allEntrys (after: "YXJyYXljb25uZWN0aW9uOjA", first: 20, sortBy:meta_firstPublicationDate_ASC) {
+    allEntrys (after: "${lastId}", first: 20, sortBy:meta_firstPublicationDate_ASC) {
         totalCount
         pageInfo {
             hasNextPage
