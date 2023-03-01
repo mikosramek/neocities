@@ -5,8 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Neocities Gem
-        run: sudo apt-get install ruby
+        run: |
+          sudo apt-get install ruby
+          gem install neocities
       - name: Create Build
-        run: npm run build
+        run: |
+          npm i
+          npm run build
       - name: Publish Build
         run: NEOCITIES_SITENAME=allmanorofduns NEOCITIES_PASSWORD=$NEOCITIES_PASSWORD neocities push ./build
