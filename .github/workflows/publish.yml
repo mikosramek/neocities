@@ -1,0 +1,12 @@
+name: Publish Site
+on: workflow_dispatch
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Neocities Gem
+        run: sudo apt-get install ruby
+      - name: Create Build
+        run: npm run build
+      - name: Publish Build
+        run: NEOCITIES_SITENAME=allmanorofduns NEOCITIES_PASSWORD=$NEOCITIES_PASSWORD neocities push ./build
