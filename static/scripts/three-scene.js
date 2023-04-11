@@ -1,6 +1,6 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.128.0/build/three.module.js';
-import { OrbitControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from "https://cdn.skypack.dev/three@0.128.0/build/three.module.js";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js";
 
 const textureLoader = new THREE.TextureLoader();
 
@@ -13,7 +13,12 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enabled = false;
 
@@ -23,36 +28,44 @@ function updateCanvas() {
   camera.updateProjectionMatrix();
 }
 
-
 // walls
-textureLoader.load('./images/stone_wall.jpg', (texture) => {
-  const material = new THREE.MeshStandardMaterial({
-    map: texture
-  });
-  const wallGeometry = new THREE.BoxGeometry(35, 25, 25);
+textureLoader.load(
+  "./images/stone_wall.jpg",
+  (texture) => {
+    const material = new THREE.MeshStandardMaterial({
+      map: texture,
+    });
+    const wallGeometry = new THREE.BoxGeometry(35, 25, 25);
 
-  material.side = THREE.BackSide;
-  const walls = new THREE.Mesh(wallGeometry, material);
-  walls.position.z = 5;
+    material.side = THREE.BackSide;
+    const walls = new THREE.Mesh(wallGeometry, material);
+    walls.position.z = 5;
 
-  scene.add(walls);
-}, undefined, console.error);
+    scene.add(walls);
+  },
+  undefined,
+  console.error
+);
 
 // floor
-textureLoader.load('./images/cobblestone.jpg', (texture) => {
+textureLoader.load(
+  "./images/cobblestone.jpg",
+  (texture) => {
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(4, 4);
+    const cubeGeometry = new THREE.BoxGeometry(35, 0.1, 25);
+    const material = new THREE.MeshStandardMaterial({ map: texture });
 
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(4, 4);
-  const cubeGeometry = new THREE.BoxGeometry(35, 0.1, 25);
-  const material = new THREE.MeshStandardMaterial({ map: texture });
+    const cube = new THREE.Mesh(cubeGeometry, material);
 
-  const cube = new THREE.Mesh(cubeGeometry, material);
-
-  cube.position.y = -0.18;
-  cube.position.z = 5;
-  scene.add(cube);
-}, undefined, console.error);
+    cube.position.y = -0.18;
+    cube.position.z = 5;
+    scene.add(cube);
+  },
+  undefined,
+  console.error
+);
 
 // scene.add(new THREE.AxesHelper( 20 ));
 
@@ -82,7 +95,6 @@ let outerGate = null;
 let innerGate = null;
 
 const modelLoaded = (gltf) => {
-  console.log('Loaded!');
   const gate = gltf.scene;
   gate.position.y = -2;
 
@@ -100,12 +112,17 @@ const modelLoaded = (gltf) => {
 
   scene.add(innerGate);
   scene.add(outerGate);
-}
+};
 const handleModeLoading = (xhr) => {
-  console.log(( xhr.loaded / xhr.total * 100 ) + '% loaded');
-}
+  console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+};
 
-loader.load('./models/ring.gltf', modelLoaded, handleModeLoading, console.error);
+loader.load(
+  "./models/ring.gltf",
+  modelLoaded,
+  handleModeLoading,
+  console.error
+);
 
 let gateSpeed = 1;
 
@@ -115,7 +132,8 @@ function animate() {
   if (innerGate) {
     clock.getDelta();
     innerGate.rotation.y += ((Math.PI * 2) / 360) * gateSpeed;
-    innerGate.position.y = Math.sin(Math.PI * 2 * clock.elapsedTime / 5) * 0.05;
+    innerGate.position.y =
+      Math.sin((Math.PI * 2 * clock.elapsedTime) / 5) * 0.05;
   }
 
   renderer.render(scene, camera);
@@ -123,12 +141,12 @@ function animate() {
 
 scene.position.y = -1.5;
 
-document.querySelectorAll('.Landing__nav-item').forEach(function(item) {
+document.querySelectorAll(".Landing__nav-item").forEach(function (item) {
   const link = item.children[0];
-  link.addEventListener('mouseenter', function() {
+  link.addEventListener("mouseenter", function () {
     gateSpeed = 2;
   });
-  link.addEventListener('mouseleave', function() {
+  link.addEventListener("mouseleave", function () {
     gateSpeed = 1;
   });
 });

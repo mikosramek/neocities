@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../favicon.ico" />
     <title>%name% | %title%</title>
 
-    <link href="../styles/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../styles/slices.css" rel="stylesheet" type="text/css" media="all" />
+    <link
+      href="../styles/style.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <link
+      href="../styles/slices.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
 
     <!-- Share Meta -->
-%meta_tags%
-</head>
-<body class="Entry__body">
+    %meta_tags%
+  </head>
+  <body class="Entry__body">
     <div class="Global__backing"></div>
     <div class="Global__wrapper">
-        <header class="Entry__header-container">
-            <a href="%back_link%" class="Entry__header-go-back">
-                <img src="../images/aniback.gif" alt="Go back to home">
-            </a>
-            <img src="%big_image_url%" alt="%big_image_alt%" class="Entry__header-image">
-            <div class="Entry__header-description-wrapper">
-                <h1 class="Entry__header-copy">%name%</h1>
-                %description%
-            </div>
-        </header>
-        <main>
-            %gallery%
-        </main>
-        <footer>
-            %credit%
-        </footer>
+      <header class="Entry__header-container">
+        <a href="%back_link%" class="Entry__header-go-back">
+          <img src="../images/aniback.gif" alt="Go back to home" />
+        </a>
+        <img
+          src="%big_image_url%"
+          alt="%big_image_alt%"
+          class="Entry__header-image"
+        />
+        <div class="Entry__header-description-wrapper">
+          <h1 class="Entry__header-copy">%name%</h1>
+          %description%
+        </div>
+      </header>
+      <main>%gallery%</main>
+      <footer>%credit%</footer>
     </div>
-</body>
+    <script src="../scripts/three-model-viewer.js" type="module"></script>
+  </body>
 </html>

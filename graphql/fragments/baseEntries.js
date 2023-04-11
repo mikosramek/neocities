@@ -17,6 +17,16 @@ edges {
       big_image
       body {
           __typename
+          ... on EntryBodyModel {
+            type
+            primary {
+              model {
+                ... on _FileLink {
+                  url
+                }
+              }
+            }
+          }
           ... on EntryBodyGallery {
               type
               primary {
