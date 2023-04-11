@@ -250,9 +250,7 @@
   width: 100vw;
   aspect-ratio: 1;
   margin: 0 auto;
-}
-
-.Slice__model-view canvas {
+  border: 1px solid #fff6;
 }
 
 /* Mobile Breakpoint */
