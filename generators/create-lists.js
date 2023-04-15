@@ -5,7 +5,6 @@ const { replaceAllKeys, addCredit, IS_DEV } = require("../utils/general-utils");
 const { getSliceTemplate } = require("../utils/file-grabbing");
 
 const handleListEntry = (listEntries) => {
-  console.log(listEntries);
   const wrapperTemplate = getSliceTemplate("lists-link-wrapper");
   const template = getSliceTemplate("lists-link");
 
