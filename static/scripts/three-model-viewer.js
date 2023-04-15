@@ -8,7 +8,7 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.128.0/examples/jsm/l
 const loader = new GLTFLoader();
 
 const getSize = () => {
-  const width = window.innerWidth > 500 ? 500 : window.innerWidth;
+  const width = window.innerWidth * 0.95 > 500 ? 500 : window.innerWidth * 0.95;
   const height = width;
   return {
     width,
