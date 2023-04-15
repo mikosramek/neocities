@@ -1,9 +1,10 @@
-const home = require('./fragments/home');
-const landing = require('./fragments/landing');
-const guestbook = require('./fragments/guestbook');
-const blog = require('./fragments/blog');
-const about = require('./fragments/about');
-const baseEntries = require('./fragments/baseEntries');
+const home = require("./fragments/home");
+const landing = require("./fragments/landing");
+const guestbook = require("./fragments/guestbook");
+const blog = require("./fragments/blog");
+const lists = require("./fragments/lists");
+const about = require("./fragments/about");
+const baseEntries = require("./fragments/baseEntries");
 
 const basePages = `
 {
@@ -12,8 +13,9 @@ const basePages = `
     ${guestbook}
     ${blog}
     ${about}
+    ${lists}
 }
-`
+`;
 
 const firstEntries = `
 {
@@ -25,7 +27,7 @@ const firstEntries = `
         ${baseEntries}
     }
 }
-`
+`;
 
 const entries = (lastId) => `
 {
@@ -37,10 +39,10 @@ const entries = (lastId) => `
         ${baseEntries}
     }
 }
-`
+`;
 
 module.exports = {
-    basePages,
-    firstEntries,
-    entries
-}
+  basePages,
+  firstEntries,
+  entries,
+};

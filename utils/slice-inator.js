@@ -22,6 +22,8 @@ const handleSlices = (slices) => {
           return handleWideImage(fields);
         case "model":
           return handleModel(primary);
+        case "list":
+          return handleList(primary, fields);
         default:
           console.log(slice);
           log.red(`${type} slice not handled`);
@@ -226,6 +228,51 @@ const handleModel = (primary) => {
   return replaceAllKeys(modelTemplate, {
     modelUrl,
     uuid,
+  });
+};
+
+const handleList = (primary, fields) => {
+  const listTemplate = getSliceTemplate("list");
+
+  const listEntryTemplate = getSliceTemplate("list-entry");
+  const entriesHtml = fields
+    .map((field) => {
+      const description = _get(field, "list_entry_description", "");
+      const trait = _get(field, "list_entry_command_trait", "");
+      const artefact = _get(field, "list_entry_artefact", "");
+      const spell = _get(field, "list_entry_spell", "");
+      const other = _get(field, "list_entry_other", "");
+
+      return replaceAllKeys(listEntryTemplate, {
+        name: _get(field, "list_entry_name", ""),
+        image_url: _get(field, "list_entry_image.url", ""),
+        image_alt: _get(field, "list_entry_image.alt", ""),
+        description: description
+          ? `<p class="Slice__list-entry-description">${description}</p>`
+          : "<!-- description -->",
+        general: _get(field, "list_entry_general", false)
+          ? '<p class="Slice__list-entry-general">General</p>'
+          : "<!-- not a general -->",
+        trait: trait
+          ? `<p class="Slice__list-entry-trait">Command trait: <span>${trait}</span></p>`
+          : "<!-- command trait -->",
+        artefact: artefact
+          ? `<p class="Slice__list-entry-artefact">Taken Artefact: <span>${artefact}</span></p>`
+          : "<!-- artefact -->",
+        spell: spell
+          ? `<p class="Slice__list-entry-spell">Known spells: <span>${spell}</span></p>`
+          : "<!-- spell -->",
+        other: other
+          ? `<p class="Slice__list-entry-other">${other}</p>`
+          : "<!-- other -->",
+      });
+    })
+    .join("\n");
+
+  return replaceAllKeys(listTemplate, {
+    title: _get(primary, "list_title[0].text", ""),
+    description: injectStyleTags(_get(primary, "list_description[0].text", "")),
+    entries: entriesHtml,
   });
 };
 

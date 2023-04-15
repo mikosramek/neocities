@@ -51,6 +51,23 @@ edges {
               text
             }
           }
+          ... on EntryBodyList {
+            type
+            primary {
+              list_title
+              list_description
+            }
+            fields {
+              list_entry_name
+              list_entry_image
+              list_entry_spell
+              list_entry_other
+              list_entry_general
+              list_entry_artefact
+              list_entry_description
+              list_entry_command_trait
+            }
+          }
       }
   }
 }

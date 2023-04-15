@@ -3,6 +3,46 @@
     "__schema": {
       "types": [
         {
+          "kind": "OBJECT",
+          "name": "About",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AboutBadges",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AboutConnectionConnection",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AboutConnectionEdge",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AboutQuotes",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Blog",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "BlogConnectionConnection",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "BlogConnectionEdge",
+          "possibleTypes": null
+        },
+        {
           "kind": "SCALAR",
           "name": "DateTime",
           "possibleTypes": null
@@ -18,6 +58,18 @@
           "possibleTypes": [
             {
               "name": "EntryBodyGallery"
+            },
+            {
+              "name": "EntryBodyText_entry"
+            },
+            {
+              "name": "EntryBodyWideimage"
+            },
+            {
+              "name": "EntryBodyModel"
+            },
+            {
+              "name": "EntryBodyList"
             }
           ]
         },
@@ -38,12 +90,77 @@
         },
         {
           "kind": "OBJECT",
+          "name": "EntryBodyList",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyListFields",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyListPrimary",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyModel",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyModelPrimary",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyText_entry",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyText_entryFields",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyText_entryPrimary",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyWideimage",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntryBodyWideimageFields",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "EntryConnectionConnection",
           "possibleTypes": null
         },
         {
           "kind": "OBJECT",
           "name": "EntryConnectionEdge",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Guestbook",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "GuestbookConnectionConnection",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "GuestbookConnectionEdge",
           "possibleTypes": null
         },
         {
@@ -115,6 +232,21 @@
         },
         {
           "kind": "OBJECT",
+          "name": "Lists",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ListsConnectionConnection",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ListsConnectionEdge",
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "Meta",
           "possibleTypes": null
         },
@@ -135,12 +267,27 @@
         },
         {
           "kind": "ENUM",
+          "name": "SortAbouty",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "SortBlogy",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
           "name": "SortDocumentsBy",
           "possibleTypes": null
         },
         {
           "kind": "ENUM",
           "name": "SortEntryy",
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "SortGuestbooky",
           "possibleTypes": null
         },
         {
@@ -154,8 +301,38 @@
           "possibleTypes": null
         },
         {
+          "kind": "ENUM",
+          "name": "SortListsy",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereAbout",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereAboutBadges",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereAboutQuotes",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereBlog",
+          "possibleTypes": null
+        },
+        {
           "kind": "INPUT_OBJECT",
           "name": "WhereEntry",
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereGuestbook",
           "possibleTypes": null
         },
         {
@@ -169,17 +346,34 @@
           "possibleTypes": null
         },
         {
+          "kind": "INPUT_OBJECT",
+          "name": "WhereLists",
+          "possibleTypes": null
+        },
+        {
           "kind": "INTERFACE",
           "name": "_Document",
           "possibleTypes": [
             {
+              "name": "About"
+            },
+            {
+              "name": "Blog"
+            },
+            {
               "name": "Entry"
+            },
+            {
+              "name": "Guestbook"
             },
             {
               "name": "Home"
             },
             {
               "name": "Landing"
+            },
+            {
+              "name": "Lists"
             }
           ]
         },
@@ -213,13 +407,25 @@
           "name": "_Linkable",
           "possibleTypes": [
             {
+              "name": "About"
+            },
+            {
+              "name": "Blog"
+            },
+            {
               "name": "Entry"
+            },
+            {
+              "name": "Guestbook"
             },
             {
               "name": "Home"
             },
             {
               "name": "Landing"
+            },
+            {
+              "name": "Lists"
             },
             {
               "name": "_ExternalLink"
